@@ -8,24 +8,29 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /*
- * Ä«Å×°í¸® ¹Þ¾Æ¼­ °¡°Ô Ãâ·Â, °¡°Ô ¼±ÅÃ, ¸Þ´º ¼±ÅÃ±îÁö °¡´É 
+ * ì¹´í…Œê³ ë¦¬ ë°›ì•„ì„œ ê°€ê²Œ ì¶œë ¥, ê°€ê²Œ ì„ íƒ, ë©”ë‰´ ì„ íƒê¹Œì§€ ê°€ëŠ¥ 
  */
 public class Delivery {
-	public String[] category = {"ºÐ½Ä", "ÇÑ½Ä", "ÀÏ½Ä&µ·±î½º", "µµ½Ã¶ô", "Á·¹ßº¸½Ó", 
-			"Âò,ÅÁ", "ÆÐ½ºÆ®Çªµå", "ÇÇÀÚ", "Ä¡Å²", "Áß±¹Áý"};; //Ä«Å×°í¸®
-	public int categoryNumber;
-	public int totalPrice;
-	public String storeTelephone;
-	String[] store = new String[50]; //°¡°Ô Á¾·ù(ex ÇýÀÎ, ¼öÁ¤, ¼ö¿¬ÀÌ³×)
+	public String[] category = {"ë¶„ì‹", "í•œì‹", "ì¼ì‹&ëˆê¹ŒìŠ¤", "ë„ì‹œë½", "ì¡±ë°œë³´ìŒˆ", 
+			"ì°œ,íƒ•", "íŒ¨ìŠ¤íŠ¸í‘¸ë“œ", "í”¼ìž", "ì¹˜í‚¨", "ì¤‘êµ­ì§‘"};; //ì¹´í…Œê³ ë¦¬
+	public int categoryNumber; //ì¹´í…Œê³ ë¦¬ ë²ˆí˜¸
+	public int totalPrice; //ì´ ê¸ˆì•¡
+	public String storeTelephone; //ê°€ê²Œ ì „í™”ë²ˆí˜¸ 
+	String[] store = new String[50]; //ê°€ê²Œë“¤ 
 
-	public Delivery(int number){ //number = Ä«Å×°í¸® ¹øÈ£ ÀÔ·Â (findstore¿¡ getcategory ÀÖÀ½)
+/*
+ * 	number = ì¹´í…Œê³ ë¦¬ ë²ˆí˜¸ ìž…ë ¥ (findstoreì— getcategory ìžˆìŒ)
+ */
+	public Delivery(int number){
 		categoryNumber = number;
 		totalPrice = 0;
 	}
+/*
+ * 	ì¹´í…Œê³ ë¦¬ì— ë”°ë¥¸ ì‹ë‹¹ ì¶œë ¥ 
+ */
+	public void printStore(){
 	
-	public void printStore(){		//Ä«Å×°í¸®¿¡ µû¸¥ ½Ä´ç Ãâ·Â 
-	
-		try{
+		try{ //ì¹´í…Œê³ ë¦¬ì— ë”°ë¥¸ ì‹ë‹¹ ë¦¬ìŠ¤íŠ¸ ê°€ì ¸ì˜¤ê¸°
 			BufferedReader in = new BufferedReader(new FileReader("C:\\"+category[categoryNumber-1]+"\\"+category[categoryNumber-1]+".txt"));
 			String line = in.readLine();
 			int i = 0;
@@ -46,15 +51,17 @@ public class Delivery {
 		} catch(IOException e){System.out.println(e);}
 	
 		for(int i=0, j=1; store[i]!=null; i+=2){
-			System.out.println(j+"."+store[i]+"\nÀüÈ­¹øÈ£ : "+store[i+1]);
+			System.out.println(j+"."+store[i]+"\nì „í™”ë²ˆí˜¸ : "+store[i+1]);
 			j++;
 		}
 	}
-	
-	public String selectStore(){ //½Ä´ç ¼±ÅÃ, ½Ä´ç Ãâ·Â ÀÌÈÄ¿¡ »ç¿ë ¹Ù¶÷.
+/*
+ * 	ì‹ë‹¹ ì„ íƒ, ì‹ë‹¹ ì¶œë ¥ ì´í›„ì— ì‚¬ìš© ë°”ëžŒ.
+ */
+	public String selectStore(){ 
 		Scanner scan = new Scanner(System.in);
 		int n = 0;
-		while(true){
+		while(true){ //ìž˜ëª»ëœ ìˆ«ìž , ë¬¸ìž ìž…ë ¥ì‹œ ìž¬ì‹œë„ 
 			try{
 				n = scan.nextInt();
 				if(store[2*(n-1)]==null) throw new Exception();
@@ -63,19 +70,21 @@ public class Delivery {
 			}
 			catch(InputMismatchException ime){
 				scan = new Scanner(System.in);
-				System.out.println("¼ýÀÚ¸¸ ÀÔ·ÂÇØÁÖ¼¼¿ä.\n ");
+				System.out.println("ìˆ«ìžë§Œ ìž…ë ¥í•´ì£¼ì„¸ìš”.\n ");
 				printStore();
 			}
 			catch(Exception e){
-				System.out.println("¿Ç¹Ù¸¥ ¹øÈ£°¡ ¾Æ´Õ´Ï´Ù.\n");
+				System.out.println("ì˜³ë°”ë¥¸ ë²ˆí˜¸ê°€ ì•„ë‹™ë‹ˆë‹¤.\n");
 				printStore();
 			}
 		}
 		storeTelephone = store[2*(n-1)+1];
 		return store[2*(n-1)];
 	}
-	
-	public void order(OrderList orderlist){ //ÁÖ¹®, (°¡°ÔÃâ·Â -> ¸Þ´º°´Ã¼ »ý¼º -> ¸Þ´º ÇÁ¸°Æ® )		
+/*
+ * 	ì£¼ë¬¸, (ê°€ê²Œì¶œë ¥ -> ë©”ë‰´ê°ì²´ ìƒì„± -> ë©”ë‰´ í”„ë¦°íŠ¸ )	
+ */
+	public void order(OrderList orderlist){	
 		printStore();
 		
 		Menu m = new Menu(selectStore(), category[categoryNumber-1]);
@@ -87,6 +96,9 @@ public class Delivery {
 		orderlist.setStore(m.getStoreName());
 		orderlist.setStoreTelephone(getStoreTelephone());
 	}
+/*
+ * ê°€ê²Œ ì „í™”ë²ˆí˜¸ ë¦¬í„´
+ */
 	public String getStoreTelephone(){
 		return storeTelephone;
 	}
