@@ -7,26 +7,31 @@ import java.util.StringTokenizer;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 /*
- * °¡°Ô ÀÌ¸§ ÀÔ·Â¹Ş¾Æ¼­ ÇØ´ç °¡°Ô ¸Ş´º Ãâ·Â 
+ * ê°€ê²Œ ì´ë¦„ ì…ë ¥ë°›ì•„ì„œ í•´ë‹¹ ê°€ê²Œ ë©”ë‰´ ì¶œë ¥ 
  */
 public class Menu {
-	public String cate;
-	public String storeName;
-	public int price;
-	public String[] menuList;
-	public String total[] = new String[100];
+	public String cate; //ì„ íƒí•œ ì¹´í…Œê³ ë¦¬ 
+	public String storeName; //ê°€ê²Œ ì´ë¦„
+	public int price; //ì´ ê°€ê²©
+	public String[] menuList; //ê°€ê²Œì˜ ë©”ë‰´ë¦¬ìŠ¤íŠ¸
+	public String total[] = new String[100]; // ì£¼ë¬¸í•œ ë¦¬ìŠ¤íŠ¸
 	public Scanner scan = new Scanner(System.in);
 	
-	public int menuCount;
+	public int menuCount; //ë©”ë‰´ì˜ ê°œìˆ˜
 	
-	public Menu(String name, String c){ //°¡°Ô ÀÔ·Â¹Ş±â, delivery¿¡ getName ÀÖÀ½.
+	/*
+	 * ê°€ê²Œ ì…ë ¥ë°›ê¸°, deliveryì— getName ìˆìŒ.
+	 */
+	public Menu(String name, String c){ 
 		cate = c;
 		storeName = name;
 		menuCount = 0;
 		menuList = new String[100];
 	}
-	
-	public void printMenu(){ //°¡°Ô¿¡ µû¸¥ ¸Ş´º Ãâ·Â
+	/*
+	 * ê°€ê²Œì— ë”°ë¥¸ ë©”ë‰´ ì¶œë ¥
+	 */
+	public void printMenu(){
 		try{
 			BufferedReader in = new BufferedReader(new FileReader("C:\\"+cate+"\\"+storeName+".txt"));
 			String line = in.readLine();
@@ -43,39 +48,43 @@ public class Menu {
 				
 			}
 			in.close();
-			System.out.println("¸Ş´º: ");
+			System.out.println("ë©”ë‰´: ");
 			int index=1;
 			for(int j = 0; menuList[j]!=null; j+=2){
-				System.out.println(index+"."+menuList[j]+"\n°¡°İ: "+menuList[j+1]); index++;
+				System.out.println(index+"."+menuList[j]+"\nê°€ê²©: "+menuList[j+1]); index++;
 				menuCount++;
 			}
 					
 		} catch(IOException e){System.out.println(e);}
 			
 		}
-	public int selectMenu(){ //Ãâ·Â/ÀúÀåµÈ ¸Ş´º °¡Áö°í ¼±ÅÃÇÏ±â 
+	
+	/*
+	 * ì¶œë ¥/ì €ì¥ëœ ë©”ë‰´ ê°€ì§€ê³  ì„ íƒí•˜ê¸° 
+	 */
+	public int selectMenu(){
 		int n=0;
 		int tcount = 0;
 		
-		n = scannerException(menuCount); //nÀº ¿Ç¹Ù¸¥ ¼ıÀÚÀÎ°¡? °Ë»ç
+		n = scannerException(menuCount); //nì€ ì˜³ë°”ë¥¸ ìˆ«ìì¸ê°€? ê²€ì‚¬
 		
 		total[tcount++] = menuList[2*(n-1)];
 		
 		price += Integer.parseInt(menuList[2*(n-1)+1]);
 		
-		System.out.print("¼±ÅÃ¸Ş´º : ");
+		System.out.print("ì„ íƒë©”ë‰´ : ");
 		
 		for(int i = 0; total[i]!=null;i++){
 			System.out.print(i+1+"."+total[i]+" ");
 		}
-		System.out.println("\n°¡°İ: "+price);
+		System.out.println("\nê°€ê²©: "+price);
 		
-		System.out.println("´õ ¼±ÅÃÇÏ½Ã°Ú½À´Ï±î?\n1.Yes    2.NO    3.Menu_Cancel");
+		System.out.println("ë” ì„ íƒí•˜ì‹œê² ìŠµë‹ˆê¹Œ?\n1.Yes    2.NO    3.Menu_Cancel");
 		n = scannerException(3);
 		
-		while(n==1 || n==3){ //1. ¼±ÅÃ ÀÌ³ª 3.»èÁ¦ ¸¦ ´­·¶À» °æ¿ì 
+		while(n==1 || n==3){ //1. ì„ íƒ ì´ë‚˜ 3.ì‚­ì œ ë¥¼ ëˆŒë €ì„ ê²½ìš° 
 			if(n==3){
-				System.out.println("»èÁ¦ÇÒ ¸Ş´º¹øÈ£¸¦ ¼±ÅÃÇØÁÖ¼¼¿ä. " );
+				System.out.println("ì‚­ì œí•  ë©”ë‰´ë²ˆí˜¸ë¥¼ ì„ íƒí•´ì£¼ì„¸ìš”. " );
 				n = scannerException(tcount);
 				
 				String tmp = total[n-1];
@@ -91,10 +100,10 @@ public class Menu {
 			}
 				
 			else{
-				System.out.println("¸Ş´º: ");
+				System.out.println("ë©”ë‰´: ");
 			
 				for(int j = 0; menuList[j]!=null; j+=2){
-					System.out.println(n+"."+menuList[j]+" °¡°İ: "+menuList[j+1]); 
+					System.out.println(n+"."+menuList[j]+" ê°€ê²©: "+menuList[j+1]); 
 					n++; 
 				}
 			
@@ -105,14 +114,14 @@ public class Menu {
 				
 			}
 		
-			System.out.print("¼±ÅÃ¸Ş´º : ");
+			System.out.print("ì„ íƒë©”ë‰´ : ");
 			
 			for(int i = 0; total[i]!=null;i++){
 				System.out.print(i+1+"."+total[i]+" ");
 			}
 			
-			System.out.println("\n°¡°İ: "+price);
-			System.out.println("´õ ¼±ÅÃÇÏ½Ã°Ú½À´Ï±î?\n1.Yes    2.NO     3.Menu_Cancel");
+			System.out.println("\nê°€ê²©: "+price);
+			System.out.println("ë” ì„ íƒí•˜ì‹œê² ìŠµë‹ˆê¹Œ?\n1.Yes    2.NO     3.Menu_Cancel");
 			n = scannerException(3);
 			
 		}
@@ -120,7 +129,7 @@ public class Menu {
 		return price;
 	}
 	/*
-	 * ¸Ş´º ¼±ÅÃÀÌ³ª ¸Ş´º Ãß°¡, »èÁ¦ÇÒ¶§ ¼ıÀÚ ¹üÀ§ °Ë»ç¿ë ÇÔ¼ö
+	 * ë©”ë‰´ ì„ íƒì´ë‚˜ ë©”ë‰´ ì¶”ê°€, ì‚­ì œí• ë•Œ ìˆ«ì ë²”ìœ„ ê²€ì‚¬ìš© í•¨ìˆ˜
 	 */
 	public int scannerException(int m){
 		int n=0;
@@ -128,29 +137,37 @@ public class Menu {
 		while(true){
 			try{
 				n = scan.nextInt();
-				if(n > m) throw new Exception(); //¸Ş´º ¼±ÅÃ ¹øÈ£ exception
+				if(n > m) throw new Exception(); //ë©”ë‰´ ì„ íƒ ë²ˆí˜¸ exception
 				break;
 			}
-			catch(InputMismatchException ime){ //¹®ÀÚ¸¦ ÀÔ·ÂÇßÀ» ¶§
+			catch(InputMismatchException ime){ //ë¬¸ìë¥¼ ì…ë ¥í–ˆì„ ë•Œ
 				scan = new Scanner(System.in);
-				System.out.println("¼ıÀÚ¸¸ ÀÔ·ÂÇØÁÖ¼¼¿ä.\n ");
+				System.out.println("ìˆ«ìë§Œ ì…ë ¥í•´ì£¼ì„¸ìš”.\n ");
 			}
-			catch(Exception e){ //¸Ş´º ¹øÈ£¸¦ ÃÊ°úÇßÀ» ¶§
-				System.out.println("¿Ç¹Ù¸¥ ¹øÈ£°¡ ¾Æ´Õ´Ï´Ù.\n");	
+			catch(Exception e){ //ë©”ë‰´ ë²ˆí˜¸ë¥¼ ì´ˆê³¼í–ˆì„ ë•Œ
+				System.out.println("ì˜³ë°”ë¥¸ ë²ˆí˜¸ê°€ ì•„ë‹™ë‹ˆë‹¤.\n");	
 			}
 		}
 		
 		return n;
 		
 	}
+	/*
+	 * ì£¼ë¬¸í•œ ë¦¬ìŠ¤íŠ¸ ë¦¬í„´
+	 */
 	public String[] getTotalList(){
 		return total;
 	}
+	/*
+	 * ì´ ê°€ê²©
+	 */
 	public int getPrice(){
 		return price;
 	}
+	/*
+	 * ì‹ë‹¹ ì´ë¦„
+	 */
 	public String getStoreName(){
 		return storeName;
 	}
 }
-
