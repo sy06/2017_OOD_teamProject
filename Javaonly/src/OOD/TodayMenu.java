@@ -7,23 +7,32 @@ import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.StringTokenizer;
-
+/*
+ * ì˜¤ëŠ˜ì˜ ë©”ë‰´
+ */
 public class TodayMenu {
-	private String T_store[];
-	private String T_category;
+	private String T_store[]; //ì˜¤ëŠ˜ì˜ ê°€ê²Œ
+	private String T_category; //ì˜¤ëŠ˜ì˜ ì¹´í…Œê³ ë¦¬
 	
+	/*
+	 * ê°€ê²Œ ë¦¬ìŠ¤íŠ¸ ì´ˆê¸°í™”
+	 */
 	public TodayMenu(){
 		T_store = new String[100];	
 	}
-	public void SelectCategory(){ //Ä«Å×°í¸® ¼±ÅÃÇÏ±â
+	
+	/*
+	 * ì‚¬ìš©ìê°€ ì›í•˜ëŠ” ì¹´í…Œê³ ë¦¬ ì„ íƒ
+	 */
+	public void SelectCategory(){ 
 		Scanner scan = new Scanner(System.in);
 		int n=0;
 		
-		System.out.println("***** ¸Ô°í½ÍÀº À½½Ä Á¾·ù¸¦ ¼±ÅÃÇØÁÖ¼¼¿ä. *****");
+		System.out.println("***** ë¨¹ê³ ì‹¶ì€ ìŒì‹ ì¢…ë¥˜ë¥¼ ì„ íƒí•´ì£¼ì„¸ìš”. *****");
 		
 		while(true){
-			System.out.println("1. ºĞ½Ä\n2. ÇÑ½Ä \n3. ÀÏ½Ä&µ·±î½º\n4. µµ½Ã¶ô\n5. "
-					+ "Á·¹ßº¸½Ó\n6. Âò,ÅÁ\n7. ÆĞ½ºÆ®Çªµå\n8. ÇÇÀÚ\n9. Ä¡Å²\n10. Áß±¹Áı");
+			System.out.println("1. ë¶„ì‹\n2. í•œì‹ \n3. ì¼ì‹&ëˆê¹ŒìŠ¤\n4. ë„ì‹œë½\n5. "
+					+ "ì¡±ë°œë³´ìŒˆ\n6. ì°œ,íƒ•\n7. íŒ¨ìŠ¤íŠ¸í‘¸ë“œ\n8. í”¼ì\n9. ì¹˜í‚¨\n10. ì¤‘êµ­ì§‘");
 			
 			try{
 				n = scan.nextInt();
@@ -33,24 +42,28 @@ public class TodayMenu {
 			}
 			catch(InputMismatchException ime){
 				scan = new Scanner(System.in);
-				System.out.println("¼ıÀÚ¸¸ ÀÔ·ÂÇØÁÖ¼¼¿ä.\n ");
+				System.out.println("ìˆ«ìë§Œ ì…ë ¥í•´ì£¼ì„¸ìš”.\n ");
 			}
 			catch(Exception e){
-				System.out.println("¿Ç¹Ù¸¥ ¹øÈ£°¡ ¾Æ´Õ´Ï´Ù.\n");	
+				System.out.println("ì˜³ë°”ë¥¸ ë²ˆí˜¸ê°€ ì•„ë‹™ë‹ˆë‹¤.\n");	
 			}	
 		}
 		
-		if(n==1) T_category = "ºĞ½Ä";
-		else if(n==2) T_category = "ÇÑ½Ä";
-		else if(n==3) T_category = "ÀÏ½Ä&µ·±î½º";
-		else if(n==4) T_category = "µµ½Ã¶ô"; else if(n==5) T_category = "Á·¹ßº¸½Ó";
-		else if(n==6) T_category = "Âò,ÅÁ"; else if(n==7) T_category = "ÆĞ½ºÆ®Çªµå";
-		else if(n==8) T_category = "ÇÇÀÚ"; else if(n==9) T_category = "Ä¡Å²";
-		else if(n==10) T_category = "Áß±¹Áı";
+		if(n==1) T_category = "ë¶„ì‹";
+		else if(n==2) T_category = "í•œì‹";
+		else if(n==3) T_category = "ì¼ì‹&ëˆê¹ŒìŠ¤";
+		else if(n==4) T_category = "ë„ì‹œë½"; else if(n==5) T_category = "ì¡±ë°œë³´ìŒˆ";
+		else if(n==6) T_category = "ì°œ,íƒ•"; else if(n==7) T_category = "íŒ¨ìŠ¤íŠ¸í‘¸ë“œ";
+		else if(n==8) T_category = "í”¼ì"; else if(n==9) T_category = "ì¹˜í‚¨";
+		else if(n==10) T_category = "ì¤‘êµ­ì§‘";
 	}
-	public void RandomStore(){ //·£´ı °¡°Ô
+	
+	/*
+	 * ì¹´í…Œê³ ë¦¬ ë‚´ì˜ ëœë¤ê°€ê²Œ ì„ ì •
+	 */
+	public void RandomStore(){ 
 		try{
-			BufferedReader in = new BufferedReader(new FileReader("C:\\¿À´ÃÀÇ¸Ş´º\\"+T_category+".txt"));
+			BufferedReader in = new BufferedReader(new FileReader("C:\\ì˜¤ëŠ˜ì˜ë©”ë‰´\\"+T_category+".txt"));
 			String line = in.readLine();
 			int i = 0;
 		
@@ -69,13 +82,16 @@ public class TodayMenu {
 		
 		} catch(IOException e){System.out.println(e);}
 	}
-	public void print(){ //ÇÁ¸°Æ®
+	/*
+	 * ì„ íƒëœ ì˜¤ëŠ˜ì˜ ì¶”ì²œ ì‹ë‹¹ í”„ë¦°íŠ¸
+	 */
+	public void print(){ 
 		RandomStore();
 		
 		Random random = new Random();
 		int n = random.nextInt(2);
-		System.out.println("-------------------¿À´ÃÀÇ ÃßÃµ ½Ä´ç-------------------");
-		System.out.println(T_store[2*(n)]+"\nÀüÈ­¹øÈ£ : "+T_store[2*(n)+1]);
+		System.out.println("-------------------ì˜¤ëŠ˜ì˜ ì¶”ì²œ ì‹ë‹¹-------------------");
+		System.out.println(T_store[2*(n)]+"\nì „í™”ë²ˆí˜¸ : "+T_store[2*(n)+1]);
 		System.out.println("------------------------------------------------");
 	
 	}
