@@ -3,16 +3,22 @@ package OOD;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/*
+ * ê²°ì œ
+ */
 public class Payment {
-   int choice;
-   int price;
+   int choice; //ê²°ì œ ë°©ì‹ ë²ˆí˜¸
+   int price; //ê²°ì œ ê°€ê²©
    Credit c = new Credit();
    Cash c2 = new Cash();
    Direct d = new Direct();
    Scanner input = new Scanner(System.in);
 
+   /*
+    * ê²°ì œ ë°©ì‹ ì„ íƒí•˜ê¸°
+    */
    public int StartPayment() {
-      System.out.println("\n\n°áÁ¦¹æ½ÄÀ» ¼±ÅÃÇÏ¼¼¿ä. (1.½Å¿ëÄ«µå °áÁ¦ , 2.°èÁÂÀÌÃ¼ °áÁ¦, 3.¸¸³ª¼­ °áÁ¦)");
+      System.out.println("\n\nê²°ì œë°©ì‹ì„ ì„ íƒí•˜ì„¸ìš”. (1.ì‹ ìš©ì¹´ë“œ ê²°ì œ , 2.ê³„ì¢Œì´ì²´ ê²°ì œ, 3.ë§Œë‚˜ì„œ ê²°ì œ)");
       while (true) {
          try {
             choice = input.nextInt();
@@ -21,15 +27,18 @@ public class Payment {
             break;
          } catch (InputMismatchException ime) {
             input = new Scanner(System.in);
-            System.out.println("¼ıÀÚ¸¸ ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+            System.out.println("ìˆ«ìë§Œ ì…ë ¥í•´ì£¼ì„¸ìš”.");
          } catch (Exception e) {
-            System.out.println("¿Ç¹Ù¸¥ ¹øÈ£°¡ ¾Æ´Õ´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇÏ¼¼¿ä.");
+            System.out.println("ì˜³ë°”ë¥¸ ë²ˆí˜¸ê°€ ì•„ë‹™ë‹ˆë‹¤. ë‹¤ì‹œ ì…ë ¥í•˜ì„¸ìš”.");
          }
       }
       System.out.println();
       return choice;
    }
 
+   /*
+    * ê²°ì œí•˜ê¸° / 1ë²ˆ = ì¹´ë“œê²°ì œ ,2ë²ˆ = ê³„ì¢Œì´ì²´, 3ë²ˆ = í˜„ê¸ˆê²°ì œ
+    */
    public void doPayment(int p) {
 	   price = p;
       while (true) {
@@ -46,15 +55,18 @@ public class Payment {
       }
    }
 
+   /*
+    * ì¹´ë“œ ì„ íƒí–ˆì„ ë•Œ ì§„í–‰
+    */
    public boolean CreditChoice() {
       if (c == null) {
-         System.out.println("°áÁ¦¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù.");
+         System.out.println("ê²°ì œì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.");
          return false;
       }
       int tmp = 0;
       c.startCredit();
       c.printInputCredit();
-      System.out.println("\n\nÀÔ·ÂÇÏ½Å °áÁ¦ Á¤º¸°¡ ¸Â½À´Ï±î? (1.Yes , 2.No)");
+      System.out.println("\n\nì…ë ¥í•˜ì‹  ê²°ì œ ì •ë³´ê°€ ë§ìŠµë‹ˆê¹Œ? (1.Yes , 2.No)");
       while (true) {
          try {
             tmp = input.nextInt();
@@ -64,28 +76,30 @@ public class Payment {
             break;
          } catch (InputMismatchException ime) {
             input = new Scanner(System.in);
-            System.out.println("¼ıÀÚ¸¸ ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+            System.out.println("ìˆ«ìë§Œ ì…ë ¥í•´ì£¼ì„¸ìš”.");
          } catch (Exception e) {
-            System.out.println("¿Ç¹Ù¸¥ ¹øÈ£°¡ ¾Æ´Õ´Ï´Ù.");
+            System.out.println("ì˜³ë°”ë¥¸ ë²ˆí˜¸ê°€ ì•„ë‹™ë‹ˆë‹¤.");
          }
       }
       if (tmp == 2) {
-         System.out.println("\n°áÁ¦¸¦ Ãë¼ÒÇÕ´Ï´Ù.");
+         System.out.println("\nê²°ì œë¥¼ ì·¨ì†Œí•©ë‹ˆë‹¤.");
          return false;
       }
-      System.out.println("\n°áÁ¦°¡ ¿Ï·áµÇ¾ú½À´Ï´Ù.");
+      System.out.println("\nê²°ì œê°€ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
       return true;
    }
-
+/*
+ * ê³„ì¢Œì´ì²´ ì„ íƒí–ˆì„ ë•Œ ì§„í–‰
+ */
    public boolean CashChoice() {
       if (c2 == null) {
-         System.out.println("°áÁ¦¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù.");
+         System.out.println("ê²°ì œì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.");
          return false;
       }
       int tmp = 0;
       c2.startCash();
       c2.printInputCash();
-      System.out.println("\n\nÀÔ·ÂÇÏ½Å °áÁ¦ Á¤º¸°¡ ¸Â½À´Ï±î? (1.Yes , 2.No)");
+      System.out.println("\n\nì…ë ¥í•˜ì‹  ê²°ì œ ì •ë³´ê°€ ë§ìŠµë‹ˆê¹Œ? (1.Yes , 2.No)");
       while (true) {
          try {
             tmp = input.nextInt();
@@ -95,28 +109,30 @@ public class Payment {
             break;
          } catch (InputMismatchException ime) {
             input = new Scanner(System.in);
-            System.out.println("¼ıÀÚ¸¸ ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+            System.out.println("ìˆ«ìë§Œ ì…ë ¥í•´ì£¼ì„¸ìš”.");
          } catch (Exception e) {
-            System.out.println("¿Ç¹Ù¸¥ ¹øÈ£°¡ ¾Æ´Õ´Ï´Ù.");
+            System.out.println("ì˜³ë°”ë¥¸ ë²ˆí˜¸ê°€ ì•„ë‹™ë‹ˆë‹¤.");
          }
       }
       if (tmp == 2) {
-         System.out.println("\n°áÁ¦¸¦ Ãë¼ÒÇÕ´Ï´Ù.");
+         System.out.println("\nê²°ì œë¥¼ ì·¨ì†Œí•©ë‹ˆë‹¤.");
          return false;
       }
-      System.out.println("\n°áÁ¦°¡ ¿Ï·áµÇ¾ú½À´Ï´Ù.");
+      System.out.println("\nê²°ì œê°€ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
       return true;
    }
-
+/*
+ * ë§Œë‚˜ì„œ ê²°ì œ ì„ íƒí–ˆì„ ë•Œ ì§„í–‰
+ */
    public boolean DirectChoice() {
       if (d == null) {
-         System.out.println("°áÁ¦¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù.");
+         System.out.println("ê²°ì œì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.");
          return false;
       }
       int tmp = 0;
       d.setTotalMoney(price);
       d.startDirect();
-      System.out.println("\n\n°áÁ¦¸¦ ¿Ï·áÇÏ½Ã°Ú½À´Ï±î? (1.Yes , 2.No)");
+      System.out.println("\n\nê²°ì œë¥¼ ì™„ë£Œí•˜ì‹œê² ìŠµë‹ˆê¹Œ? (1.Yes , 2.No)");
       while (true) {
          try {
             tmp = input.nextInt();
@@ -126,16 +142,16 @@ public class Payment {
             break;
          } catch (InputMismatchException ime) {
             input = new Scanner(System.in);
-            System.out.println("¼ıÀÚ¸¸ ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+            System.out.println("ìˆ«ìë§Œ ì…ë ¥í•´ì£¼ì„¸ìš”.");
          } catch (Exception e) {
-            System.out.println("¿Ç¹Ù¸¥ ¹øÈ£°¡ ¾Æ´Õ´Ï´Ù.");
+            System.out.println("ì˜³ë°”ë¥¸ ë²ˆí˜¸ê°€ ì•„ë‹™ë‹ˆë‹¤.");
          }
       }
       if (tmp == 2) {
-         System.out.println("\n°áÁ¦¸¦ Ãë¼ÒÇÕ´Ï´Ù.");
+         System.out.println("\nê²°ì œë¥¼ ì·¨ì†Œí•©ë‹ˆë‹¤.");
          return false;
       }
-      System.out.println("\n°áÁ¦°¡ ¿Ï·áµÇ¾ú½À´Ï´Ù.");
+      System.out.println("\nê²°ì œê°€ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
       return true;
    }
 }
