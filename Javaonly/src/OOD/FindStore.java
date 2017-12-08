@@ -2,28 +2,28 @@ package OOD;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 /*
- * °¡°Ô Ã£´Â Å¬·¡½º 
+ * ê°€ê²Œ ì°¾ëŠ” í´ë˜ìŠ¤ 
  */
 public class FindStore {
-	public int category;
-	boolean deliverable;
+	public int category; //ì¹´í…Œê³ ë¦¬ ë²ˆí˜¸
+	boolean deliverable; //ë°°ë‹¬ ê°€ëŠ¥ ì—¬ë¶€
 	public Scanner scan = new Scanner(System.in);
 	
+	/*
+	 * true = ë°°ë‹¬ê°€ëŠ¥, false = ë°°ë‹¬ ë¶ˆê°€ëŠ¥ (í˜„ì¬ trueë§Œ êµ¬í˜„)
+	 */
 	public FindStore(boolean delivery){
-		/*
-		 * true = ¹è´Ş°¡´É, false = ¹è´Ş ºÒ°¡´É (ÇöÀç true¸¸ ±¸Çö)
-		 */
 		deliverable = delivery;
 	}
 	
+	/*
+	 * ì¹´í…Œê³ ë¦¬ ë¶„ì‹ or í•œì‹ ì„ íƒ (ì¶”í›„ ì¶”ê°€ ê°€ëŠ¥)
+	 */	
 	public void setCategory(){
-		/*
-		 * Ä«Å×°í¸® ºĞ½Ä or ÇÑ½Ä ¼±ÅÃ (ÃßÈÄ Ãß°¡ °¡´É)
-		 */	
 		int n=0;
 		while(true){
-			System.out.println("Ä«Å×°í¸®¸¦ ¼±ÅÃÇÏ¼¼¿ä\n1. ºĞ½Ä\n2. ÇÑ½Ä "
-					+ "\n3. ÀÏ½Ä&µ·±î½º\n4. µµ½Ã¶ô\n5. Á·¹ßº¸½Ó\n6. Âò,ÅÁ\n7. ÆĞ½ºÆ®Çªµå\n8. ÇÇÀÚ\n9. Ä¡Å²\n10. Áß±¹Áı");
+			System.out.println("ì¹´í…Œê³ ë¦¬ë¥¼ ì„ íƒí•˜ì„¸ìš”\n1. ë¶„ì‹\n2. í•œì‹ "
+					+ "\n3. ì¼ì‹&ëˆê¹ŒìŠ¤\n4. ë„ì‹œë½\n5. ì¡±ë°œë³´ìŒˆ\n6. ì°œ,íƒ•\n7. íŒ¨ìŠ¤íŠ¸í‘¸ë“œ\n8. í”¼ì\n9. ì¹˜í‚¨\n10. ì¤‘êµ­ì§‘");
 			
 			try{
 				n = scan.nextInt();
@@ -33,10 +33,10 @@ public class FindStore {
 			}
 			catch(InputMismatchException ime){
 				scan = new Scanner(System.in);
-				System.out.println("¼ıÀÚ¸¸ ÀÔ·ÂÇØÁÖ¼¼¿ä.\n ");
+				System.out.println("ìˆ«ìë§Œ ì…ë ¥í•´ì£¼ì„¸ìš”.\n ");
 			}
 			catch(Exception e){
-				System.out.println("¿Ç¹Ù¸¥ ¹øÈ£°¡ ¾Æ´Õ´Ï´Ù.\n");
+				System.out.println("ì˜³ë°”ë¥¸ ë²ˆí˜¸ê°€ ì•„ë‹™ë‹ˆë‹¤.\n");
 				
 			}
 			
@@ -45,8 +45,10 @@ public class FindStore {
 		category = n;
 		
 	}
+	/*
+	 * ì¹´í…Œê³ ë¦¬ ë²ˆí˜¸ ë¦¬í„´
+	 */
 	public int getCategory(){
-		// Ä«Å×°í¸® ¹øÈ£ ¸®ÅÏ
 		return category;
 	}
 }
