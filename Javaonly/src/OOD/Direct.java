@@ -1,28 +1,34 @@
 package OOD;
-
+/*
+ * ë§Œë‚˜ì„œ ê²°ì œ
+ */
 public class Direct {
-	   private int choice;
-	   private int total_money;
+	   private int total_money; //ê²°ì œ ê¸ˆì•¡
 	   
+	   /*
+	    * ê²°ì œ ì‹œì‘
+	    */
 	   public void startDirect() {
-	      System.out.println("¸¸³ª¼­ °áÁ¦¸¦ ¼±ÅÃÇÏ¼Ì½À´Ï´Ù. ");
+	      System.out.println("ë§Œë‚˜ì„œ ê²°ì œë¥¼ ì„ íƒí•˜ì…¨ìŠµë‹ˆë‹¤. ");
 	      checkTotalMoney();
-	      System.out.println("\n*** °áÁ¦ ±İ¾×¿¡ ¸Â°Ô µ·À» Ã¬°ÜÁÖ¼¼¿ä!! ***");
+	      System.out.println("\n*** ê²°ì œ ê¸ˆì•¡ì— ë§ê²Œ ëˆì„ ì±™ê²¨ì£¼ì„¸ìš”!! ***");
 	   }
-	   
+	   /*
+	    * ì´ ê¸ˆì•¡ í™•ì¸
+	    */
 	   public void checkTotalMoney() {
-	      System.out.println("ÃÖÁ¾ °áÁ¦ ±İ¾×Àº "+getTotalMoney()+"ÀÔ´Ï´Ù.");
+	      System.out.println("ìµœì¢… ê²°ì œ ê¸ˆì•¡ì€ "+getTotalMoney()+"ì…ë‹ˆë‹¤.");
 	   }
 	   
-	   public void setChoice(int c) {
-	      choice =c;
-	   }
-	   public int getChoice() {
-	      return choice;
-	   }
+	   /*
+	    * ì´ ê¸ˆì•¡ ì„¤ì •
+	    */
 	   public void setTotalMoney(int m) {
 	      total_money = m;
 	   }
+	   /*
+	    * ì´ ê¸ˆì•¡ ë¦¬í„´
+	    */
 	   public int getTotalMoney() {
 	      return total_money;
 	   }
