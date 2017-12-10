@@ -8,7 +8,7 @@ import java.util.Scanner;
  */
 public class User {
    private String Name; //이름
-   private int PhoneNumber; //전화번호
+   private String PhoneNumber; //전화번호
    private String address; //주소
    Payment payment = new Payment();
    Scanner scan = new Scanner(System.in);
@@ -28,7 +28,7 @@ public class User {
    /*
     * 전화번호 설정
     */
-   public void setPhoneNumber(int number) {
+   public void setPhoneNumber(String number) {
       PhoneNumber = number;
    }
    /*
@@ -47,7 +47,7 @@ public class User {
 /*
  * 유저 전화번호 리턴
  */
-   public int getUserPhoneNumber() {
+   public String getUserPhoneNumber() {
       return PhoneNumber;
    }
    /*
@@ -68,7 +68,7 @@ public class User {
       while(true) {
 
       try {
-         setPhoneNumber(scan.nextInt()); //scan.nextLine();
+         setPhoneNumber(scan.nextLine()); //scan.nextLine();
          break;
       }
       catch(InputMismatchException ime){
@@ -76,8 +76,7 @@ public class User {
          System.out.print("숫자만 입력해주세요.\n ");
       }
    }
-      scan.nextLine();
+    
       System.out.println("☞ 주소 : "); setAddress(scan.nextLine());
    }
-}
 }
