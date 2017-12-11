@@ -1,68 +1,85 @@
 package OOD;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 
-public class Test {
-   public static void main(String args[]){
-      Scanner scan = new Scanner(System.in);
-      int n=0;
-      
-      while(true){
-         try{
-      
-         System.out.println("번호를 선택해주세요. ");
-         System.out.println("1. 배달 \n2. 오늘의 추천 메뉴\n3. 종료");
-         
-         n = scan.nextInt();
-         if(n>3 || n<=0) throw new Exception();
-         break;
-      }
-         catch(InputMismatchException ime){
-               scan = new Scanner(System.in);
-            System.out.println("숫자만 입력해주세요.\n ");
-         }
-         catch(Exception e){
-            System.out.println("옳바른 번호가 아닙니다.\n");
-         }
-      }
-      
-      if(n==1){
-         User user = new User();
-         user.testUser();
-      
-         OrderList orderlist = new OrderList(user);
-      
-         FindStore f = new FindStore(true); 
-         f.setCategory();
-      
-         Delivery d = new Delivery(f.getCategory());
-         d.order(orderlist);
-         if(orderlist.getPrice() != 0){
-        	   orderlist.print();
-        	   user.payment.doPayment(orderlist.getPrice());
-         }
-        
-         else 
-            System.out.println("주문한 메뉴가 없으므로 종료합니다.");
-      /*
-       * 1. 식당찾기 (FindStore)
-       * 2. Category정하기 (FindStore에 내장되어 있습니다.)
-       * 3. 배달 시키기 (현재 배달 기능만 구현)
-       * 4. d.order로 주문하기
-       */
-      
-         scan.close();
-      }
-   
-      else if(n==2){
-         TodayMenu t = new TodayMenu();
-         t.SelectCategory();
-         
-         t.print();
-      }
-      else if(n==3){
-         System.exit(0);
-      }
-   
-   }
+/*
+ * 최종 주문 리스트
+ */
+public class OrderList {
+	public User user; //유저
+	public int price; //총 가격
+	public String storeName; //식당 이름
+	public String[] menuList; //주문한 메뉴들
+	public String storeTelephone; //가게 전화번호
+	
+	/*
+	 * User의 orderList생성
+	 */
+	public OrderList(User user){
+		this.user = user;
+	}
+	
+	/*
+	 * 가격 리턴
+	 */
+	public int getPrice(){
+		return price;
+	}
+	/*
+	 * 가게 이름 리턴
+	 */
+	public String getStore(){
+		return storeName;
+	}
+	/*
+	 * 메뉴 리스트 리턴
+	 */
+	public String[] getMenuList(){
+		return menuList;
+	}
+	/*
+	 * 가게 전화번호 리턴
+	 */
+	public String getStoreTelephone(){
+		return storeTelephone;
+	}
+	/*
+	 * 최종 가격 설정
+	 */
+	public void setPrice(int p){
+		price = p;
+	}
+	/*
+	 * 가게  설정
+	 */
+	public void setStore(String store){
+		storeName = store;
+	}
+	/*
+	 * menulist설정
+	 */
+	public void setMenuList(String[] m){
+		menuList = m;
+	}
+	/*
+	 * 가게 전화번호 설정
+	 */
+	public void setStoreTelephone(String tel){
+		storeTelephone = tel;
+	}
+	/*
+	 * 주문 print
+	 */
+	public void print(){
+		System.out.println("\n▶ 주문 확인하기◀\n");
+		System.out.println("*****주문자 정보 ***** \n"+"이름: "+user.getUserName()+"\n휴대폰 번호: "+user.getUserPhoneNumber()
+		+"\n배달 주소: "+user.getUserAddress());
+		
+		System.out.println("\n\n*****주문 정보*****\n"+"주문 가게 : "+storeName+"\n가게 전화번호 : "+storeTelephone+"\n주문 가격: "+price+"\n주문 메뉴 : ");
+		
+		for(int i = 0; menuList[i]!=null; i++){
+			System.out.println("☞   "+menuList[i]);
+		}
+		
+	}
+	
+
 }
