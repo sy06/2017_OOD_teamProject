@@ -3,66 +3,66 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Test {
-	public static void main(String args[]){
-		Scanner scan = new Scanner(System.in);
-		int n=0;
-		
-		while(true){
-			try{
-		
-			System.out.println("¹øÈ£¸¦ ¼±ÅÃÇØÁÖ¼¼¿ä. ");
-			System.out.println("1. ¹è´Þ \n2. ¿À´ÃÀÇ ÃßÃµ ¸Þ´º\n3. Á¾·á");
-			
-			n = scan.nextInt();
-			if(n>3) throw new Exception();
-			
-			break;
-		}
-			catch(InputMismatchException ime){
-				System.out.println("¼ýÀÚ¸¸ ÀÔ·ÂÇØÁÖ¼¼¿ä.\n ");
-			}
-			catch(Exception e){
-				System.out.println("¿Ç¹Ù¸¥ ¹øÈ£°¡ ¾Æ´Õ´Ï´Ù.\n");
-				
-			}
-		}
-		
-		if(n==1){
-			User user = new User();
-			user.testUser();
-		
-			OrderList orderlist = new OrderList(user);
-		
-			FindStore f = new FindStore(true); 
-			f.setCategory();
-		
-			Delivery d = new Delivery(f.getCategory());
-			d.order(orderlist);
-			if(orderlist.getPrice() != 0) 
-			orderlist.print();
-			else 
-				System.out.println("ÁÖ¹®ÇÑ ¸Þ´º°¡ ¾øÀ¸¹Ç·Î Á¾·áÇÕ´Ï´Ù.");
-		/*
-		 * 1. ½Ä´çÃ£±â (FindStore)
-		 * 2. CategoryÁ¤ÇÏ±â (FindStore¿¡ ³»ÀåµÇ¾î ÀÖ½À´Ï´Ù.)
-		 * 3. ¹è´Þ ½ÃÅ°±â (ÇöÀç ¹è´Þ ±â´É¸¸ ±¸Çö)
-		 * 4. d.order·Î ÁÖ¹®ÇÏ±â
-		 */
-		
-			user.payment.doPayment(orderlist.getPrice());
-			scan.close();
-		}
-	
-		else if(n==2){
-			TodayMenu t = new TodayMenu();
-			t.SelectCategory();
-			
-			t.print();
-		}
-		else if(n==3){
-			System.exit(0);
-		}
-	
+   public static void main(String args[]){
+      Scanner scan = new Scanner(System.in);
+      int n=0;
+      
+      while(true){
+         try{
+      
+         System.out.println("ë²ˆí˜¸ë¥¼ ì„ íƒí•´ì£¼ì„¸ìš”. ");
+         System.out.println("1. ë°°ë‹¬ \n2. ì˜¤ëŠ˜ì˜ ì¶”ì²œ ë©”ë‰´\n3. ì¢…ë£Œ");
+         
+         n = scan.nextInt();
+         if(n>3 || n<=0) throw new Exception();
+         break;
+      }
+         catch(InputMismatchException ime){
+               scan = new Scanner(System.in);
+            System.out.println("ìˆ«ìžë§Œ ìž…ë ¥í•´ì£¼ì„¸ìš”.\n ");
+         }
+         catch(Exception e){
+            System.out.println("ì˜³ë°”ë¥¸ ë²ˆí˜¸ê°€ ì•„ë‹™ë‹ˆë‹¤.\n");
+         }
+      }
+      
+      if(n==1){
+         User user = new User();
+         user.testUser();
+      
+         OrderList orderlist = new OrderList(user);
+      
+         FindStore f = new FindStore(true); 
+         f.setCategory();
+      
+         Delivery d = new Delivery(f.getCategory());
+         d.order(orderlist);
+         if(orderlist.getPrice() != 0){
+        	   orderlist.print();
+        	   user.payment.doPayment(orderlist.getPrice());
+         }
+        
+         else 
+            System.out.println("ì£¼ë¬¸í•œ ë©”ë‰´ê°€ ì—†ìœ¼ë¯€ë¡œ ì¢…ë£Œí•©ë‹ˆë‹¤.");
+      /*
+       * 1. ì‹ë‹¹ì°¾ê¸° (FindStore)
+       * 2. Categoryì •í•˜ê¸° (FindStoreì— ë‚´ìž¥ë˜ì–´ ìžˆìŠµë‹ˆë‹¤.)
+       * 3. ë°°ë‹¬ ì‹œí‚¤ê¸° (í˜„ìž¬ ë°°ë‹¬ ê¸°ëŠ¥ë§Œ êµ¬í˜„)
+       * 4. d.orderë¡œ ì£¼ë¬¸í•˜ê¸°
+       */
+      
+         scan.close();
+      }
+   
+      else if(n==2){
+         TodayMenu t = new TodayMenu();
+         t.SelectCategory();
+         
+         t.print();
+      }
+      else if(n==3){
+         System.exit(0);
+      }
+   
+   }
 }
-}
-
